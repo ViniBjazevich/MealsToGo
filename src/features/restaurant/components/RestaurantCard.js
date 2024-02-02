@@ -1,10 +1,14 @@
-import { StyleSheet, View } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
-import React from "react";
+import styled from "styled-components/native";
+
+const Container = styled.View`
+  background-color: purple;
+  padding: 16px;
+`;
 
 export const RestaurantCard = () => {
   return (
-    <View style={styles.container}>
+    <Container>
       <Card>
         <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
         <Card.Content>
@@ -16,14 +20,6 @@ export const RestaurantCard = () => {
           <Button>Ok</Button>
         </Card.Actions>
       </Card>
-    </View>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: "lightblue",
-  },
-});
