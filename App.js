@@ -1,33 +1,15 @@
+import { AppRegistry } from "react-native";
+import { PaperProvider } from "react-native-paper";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  StatusBar,
-} from "react-native";
-const isAndroid = Platform.OS === "android";
+import { RestaurantScreen } from "./src/features/restaurant/screens/RestaurantScreen";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text>Open up App.js to start working app!</Text>
-      </View>
+    <PaperProvider>
+      <RestaurantScreen />
       <ExpoStatusBar style="auto" />
-    </SafeAreaView>
+    </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: isAndroid ? StatusBar.currentHeight : 0,
-    backgroundColor: "red",
-  },
-  header: {
-    height: 123,
-    backgroundColor: "green",
-  },
-});
+AppRegistry.registerComponent("Meals To Go", () => App);
