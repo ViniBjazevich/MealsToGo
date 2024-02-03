@@ -2,8 +2,18 @@ import { Button, Card, Text } from "react-native-paper";
 import styled from "styled-components/native";
 
 const Container = styled.View`
-  background-color: purple;
-  padding: 16px;
+  background-color: ${(props) => props.theme.colors.bg.primary};
+  padding: ${(props) => props.theme.space[3]};
+`;
+
+const Title = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.body};
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  font-size: ${(props) => props.theme.fontSizes.title};
+`;
+
+const Description = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.body};
 `;
 
 export const RestaurantCard = () => {
@@ -12,8 +22,8 @@ export const RestaurantCard = () => {
       <Card>
         <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
         <Card.Content>
-          <Text variant="titleLarge">Card title</Text>
-          <Text variant="bodyMedium">Card content</Text>
+          <Title>Title</Title>
+          <Description>Description</Description>
         </Card.Content>
         <Card.Actions>
           <Button>Cancel</Button>

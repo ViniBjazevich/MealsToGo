@@ -5,8 +5,8 @@ import { SafeArea } from "../../../components/SafeArea";
 import styled from "styled-components/native";
 
 const SearchBarContainer = styled.View`
-  background-color: lightgrey;
-  padding: 16px;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 export const RestaurantScreen = () => {
