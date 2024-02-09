@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Searchbar } from "react-native-paper";
 import { RestaurantCard } from "../components/RestaurantCard";
-import { SafeArea } from "../../../components/SafeArea";
 import styled from "styled-components/native";
+import { FlatList } from "react-native";
 
 const SearchBarContainer = styled.View`
   background-color: ${(props) => props.theme.colors.bg.secondary};
@@ -10,6 +10,7 @@ const SearchBarContainer = styled.View`
 `;
 
 const restaurant = {
+  id: "something",
   name: "Gemmas flip house",
   address: "69 Hood St, Culver City, CA",
   rating: 4.2,
@@ -19,11 +20,13 @@ const restaurant = {
   icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
 };
 
+const data = [restaurant, restaurant, restaurant, restaurant];
+
 export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <SafeArea>
+    <>
       <SearchBarContainer>
         <Searchbar
           placeholder="Search"
@@ -31,7 +34,11 @@ export const RestaurantScreen = () => {
           value={searchQuery}
         />
       </SearchBarContainer>
-      <RestaurantCard restaurant={restaurant} />
-    </SafeArea>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => <RestaurantCard restaurant={item} />}
+        keyExtractor={(item, index) => index}
+      />
+    </>
   );
 };
