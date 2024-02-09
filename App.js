@@ -35,4 +35,4 @@ export default function App() {
   );
 }
 
-AppRegistry.registerComponent("Meals To Go", () => App);
+AppRegistry.registerComponent("meals-to-go", () => App);
