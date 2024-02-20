@@ -9,5 +9,6 @@
       },
     ],
     "react/react-in-jsx-scope": "off",
+    "comma-dangle": "on",
   },
 }

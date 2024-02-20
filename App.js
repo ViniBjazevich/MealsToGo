@@ -1,7 +1,6 @@
 import { AppRegistry } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { RestaurantScreen } from "./src/features/restaurant/screens/RestaurantScreen";
 import { ThemeProvider } from "styled-components/native";
 import {
   useFonts,
@@ -11,13 +10,10 @@ import {
 } from "@expo-google-fonts/oswald";
 import { Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
 import { theme } from "./src/theme";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MapScreen } from "./src/features/restaurant/screens/MapScreen";
-import { SettingsScreen } from "./src/features/restaurant/screens/SettingsScreen";
-import { NavigationIcons } from "./src/components/NavigationIcons";
-
-const Tab = createBottomTabNavigator();
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+import { Navigation } from "./src/components/Navigation";
+import "react-native-gesture-handler";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -34,24 +30,14 @@ export default function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <PaperProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                tabBarIcon: (props) => NavigationIcons({ ...props, route }),
-                tabBarActiveTintColor: "tomato",
-                tabBarInactiveTintColor: "gray",
-              })}
-            >
-              <Tab.Screen name="Restaurants" component={RestaurantScreen} />
-              <Tab.Screen name="Map" component={MapScreen} />
-              <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </PaperProvider>
-        <ExpoStatusBar style="auto" />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <PaperProvider>
+            <Navigation />
+          </PaperProvider>
+          <ExpoStatusBar style="auto" />
+        </ThemeProvider>
+      </Provider>
     </>
   );
 }
