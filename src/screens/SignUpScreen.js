@@ -4,17 +4,17 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import styled from "styled-components/native";
 import { Button, TextInput } from "react-native-paper";
 
+const SignupScreenContainer = styled.View`
+  flex: 1;
+  flex-direction: "column";
+  justify-content: center;
+  gap: 10px;
+  padding: 50px;
+`;
+
 export const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const SignupScreenContainer = styled.View`
-    flex: 1;
-    flex-direction: "column";
-    justify-content: center;
-    gap: 10px;
-    padding: 50px;
-  `;
 
   const handleSignup = () => {
     createUserWithEmailAndPassword(auth, email, password)

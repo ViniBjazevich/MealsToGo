@@ -4,17 +4,17 @@ import { Button, TextInput } from "react-native-paper";
 import { auth } from "../../firebaseConfig";
 import styled from "styled-components/native";
 
+const LoginScreenContainer = styled.View`
+  flex: 1;
+  flex-direction: "column";
+  justify-content: center;
+  gap: 10px;
+  padding: 50px;
+`;
+
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const LoginScreenContainer = styled.View`
-    flex: 1;
-    flex-direction: "column";
-    justify-content: center;
-    gap: 10px;
-    padding: 50px;
-  `;
 
   const handleSignIn = async () => {
     try {
