@@ -5,8 +5,8 @@ import { Button, TextInput } from "react-native-paper";
 import styled from "styled-components/native";
 
 export const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("gemmaielsadsad@gmail.com");
-  const [password, setPassword] = useState("iwanttosuckvinisdick");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const LoginScreenContainer = styled.View`
     flex: 1;
@@ -40,6 +40,7 @@ export const LoginScreen = ({ navigation }) => {
       <TextInput
         label="Password"
         value={password}
+        secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
       <Button icon="lock-open-outline" mode="contained" onPress={handleSignIn}>

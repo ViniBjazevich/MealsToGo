@@ -22,7 +22,7 @@ export const LandingScreen = ({ navigation }) => {
       <Button
         icon="account-outline"
         mode="contained"
-        onPress={() => navigation.navigate("")}
+        onPress={() => navigation.navigate("signUpScreen")}
       >
         Sign up
       </Button>
