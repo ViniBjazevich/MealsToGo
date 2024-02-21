@@ -1,5 +1,5 @@
 import { Button } from "react-native-paper";
-import { auth } from "../../../../firebaseConfig";
+import { auth } from "../../firebaseConfig";
 import { signOut } from "firebase/auth";
 import styled from "styled-components/native";
 

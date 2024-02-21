@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../firebaseConfig";
+import { auth } from "../../firebaseConfig";
 import { Button, TextInput } from "react-native-paper";
 import styled from "styled-components/native";
 
 export const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("gemmaielsadsad@gmail.com");
+  const [password, setPassword] = useState("iwanttosuckvinisdick");
 
   const LoginScreenContainer = styled.View`
     flex: 1;

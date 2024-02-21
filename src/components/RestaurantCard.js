@@ -2,8 +2,8 @@ import { Card, Text } from "react-native-paper";
 import { Image } from "react-native";
 import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
-import starIcon from "../../../../assets/star.js";
-import openIcon from "../../../../assets/openIcon.js";
+import starIcon from "../../assets/star.js";
+import openIcon from "../../assets/openIcon.js";
 
 const Container = styled.View`
   background-color: ${(props) => props.theme.colors.bg.primary};
