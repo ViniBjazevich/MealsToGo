@@ -12,7 +12,7 @@ import { Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
 import { theme } from "./src/theme";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import { Navigation } from "./src/components/Navigation";
+import { Navigation } from "./src/navigation/Navigation";
 import "react-native-gesture-handler";
 
 export default function App() {

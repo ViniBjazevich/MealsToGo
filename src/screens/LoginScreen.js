@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
 import { Button, TextInput } from "react-native-paper";
+import { auth } from "../../firebaseConfig";
 import styled from "styled-components/native";
 
 export const LoginScreen = ({ navigation }) => {
@@ -33,15 +33,20 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <LoginScreenContainer>
       <TextInput
-        label="Email"
+        label="E-mail"
         value={email}
-        onChangeText={(text) => setEmail(text)}
+        textContentType="emailAddress"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        onChangeText={(e) => setEmail(e)}
       />
       <TextInput
         label="Password"
         value={password}
-        secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
+        textContentType="password"
+        secureTextEntry
+        autoCapitalize="none"
+        onChangeText={(e) => setPassword(e)}
       />
       <Button icon="lock-open-outline" mode="contained" onPress={handleSignIn}>
         Login
