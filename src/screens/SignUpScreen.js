@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { View } from "react-native";
 import styled from "styled-components/native";
+import AppBar from "../components/AppBar";
 
 const SignupScreenContainer = styled.View`
   flex: 1;
@@ -13,7 +14,7 @@ const SignupScreenContainer = styled.View`
   padding: 50px;
 `;
 
-export const SignUpScreen = () => {
+export const SignUpScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -73,44 +74,47 @@ export const SignUpScreen = () => {
     Boolean(confirmPassword.length);
 
   return (
-    <SignupScreenContainer>
-      <TextInput
-        label="Email"
-        value={email}
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        label="Password"
-        value={password}
-        textContentType="password"
-        secureTextEntry
-        autoCapitalize="none"
-        onChangeText={(text) => setPassword(text)}
-      />
-      <View>
+    <>
+      <AppBar navigation={navigation}/>
+      <SignupScreenContainer>
         <TextInput
-          label="Confirm password"
-          value={confirmPassword}
+          label="Email"
+          value={email}
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          label="Password"
+          value={password}
           textContentType="password"
           secureTextEntry
           autoCapitalize="none"
-          onChangeText={(text) => setConfirmPassword(text)}
+          onChangeText={(text) => setPassword(text)}
         />
-        <HelperText type="error" visible={displayErrorMessage}>
-          {invalidErrorMessage}
-        </HelperText>
-      </View>
-      <Button
-        icon="send-outline"
-        mode="contained"
-        onPress={handleSignup}
-        disabled={!enableSubmit}
-      >
-        Signup
-      </Button>
-    </SignupScreenContainer>
+        <View>
+          <TextInput
+            label="Confirm password"
+            value={confirmPassword}
+            textContentType="password"
+            secureTextEntry
+            autoCapitalize="none"
+            onChangeText={(text) => setConfirmPassword(text)}
+          />
+          <HelperText type="error" visible={displayErrorMessage}>
+            {invalidErrorMessage}
+          </HelperText>
+        </View>
+        <Button
+          icon="send-outline"
+          mode="contained"
+          onPress={handleSignup}
+          disabled={!enableSubmit}
+        >
+          Signup
+        </Button>
+      </SignupScreenContainer>
+    </>
   );
 };

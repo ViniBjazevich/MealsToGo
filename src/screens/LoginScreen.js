@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AppBar from "../components/AppBar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, TextInput } from "react-native-paper";
 import { auth } from "../../firebaseConfig";
@@ -15,6 +16,7 @@ const LoginScreenContainer = styled.View`
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const disableLoginButton = !email.length || !password.length;
 
   const handleSignIn = async () => {
     try {
@@ -31,26 +33,34 @@ export const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <LoginScreenContainer>
-      <TextInput
-        label="E-mail"
-        value={email}
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        onChangeText={(e) => setEmail(e)}
-      />
-      <TextInput
-        label="Password"
-        value={password}
-        textContentType="password"
-        secureTextEntry
-        autoCapitalize="none"
-        onChangeText={(e) => setPassword(e)}
-      />
-      <Button icon="lock-open-outline" mode="contained" onPress={handleSignIn}>
-        Login
-      </Button>
-    </LoginScreenContainer>
+    <>
+      <AppBar navigation={navigation} />
+      <LoginScreenContainer>
+        <TextInput
+          label="E-mail"
+          value={email}
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={(e) => setEmail(e)}
+        />
+        <TextInput
+          label="Password"
+          value={password}
+          textContentType="password"
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={(e) => setPassword(e)}
+        />
+        <Button
+          disabled={disableLoginButton}
+          icon="lock-open-outline"
+          mode="contained"
+          onPress={handleSignIn}
+        >
+          Login
+        </Button>
+      </LoginScreenContainer>
+    </>
   );
 };
