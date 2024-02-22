@@ -8,7 +8,7 @@ import { selectUser } from "../../redux/selectors";
 import { NavigationIcons } from "./NavigationIcons";
 import { auth } from "../../firebaseConfig";
 import { AppNavigation } from "./AppNavigator";
-import { AuthenticationNavigation } from "./AuthenticationNavigator";
+import { AuthNavigation } from "./AuthNavigator";
 
 export const Navigation = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const Navigation = () => {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <AppNavigation /> : <AuthenticationNavigation />}
+      {isLoggedIn ? <AppNavigation /> : <AuthNavigation />}
     </NavigationContainer>
   );
 };

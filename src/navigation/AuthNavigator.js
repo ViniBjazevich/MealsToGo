@@ -5,7 +5,7 @@ import { SignUpScreen } from "../screens/SignUpScreen";
 
 const Stack = createStackNavigator();
 
-export const AuthenticationNavigation = () => {
+export const AuthNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
