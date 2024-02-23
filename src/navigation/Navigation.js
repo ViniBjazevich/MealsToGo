@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser, logoutUser } from "../../redux/accountSlice";
+import {
+  loginUser,
+  logoutUser,
+  updateUserLoading,
+} from "../../redux/accountSlice";
 import { selectUser } from "../../redux/selectors";
 import { NavigationIcons } from "./NavigationIcons";
 import { auth } from "../../firebaseConfig";
@@ -21,9 +25,12 @@ export const Navigation = () => {
         const uid = user.uid;
 
         dispatch(loginUser(user));
+        dispatch(updateUserLoading(false));
         console.log("signed in");
       } else {
         dispatch(logoutUser());
+        dispatch(updateUserLoading(false));
+
         console.log("signed out");
       }
     });

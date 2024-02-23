@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { auth } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Button, HelperText, TextInput } from "react-native-paper";
+import {
+  ActivityIndicator,
+  Button,
+  HelperText,
+  TextInput,
+} from "react-native-paper";
 import { View } from "react-native";
 import styled from "styled-components/native";
 import AppBar from "../components/AppBar";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUserLoadingStatus } from "../../redux/selectors";
+import { updateUserLoading } from "../../redux/accountSlice";
 
 const SignupScreenContainer = styled.View`
   flex: 1;
@@ -14,10 +22,12 @@ const SignupScreenContainer = styled.View`
   padding: 50px;
 `;
 
-export const SignUpScreen = ({navigation}) => {
+export const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const userIsLoading = useSelector(selectUserLoadingStatus);
+  const dispatch = useDispatch();
 
   let invalidErrorMessage = "";
 
@@ -52,18 +62,16 @@ export const SignUpScreen = ({navigation}) => {
     return error;
   };
 
-  const handleSignup = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+  const handleSignup = async () => {
+    try {
+      dispatch(updateUserLoading(true));
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      dispatch(updateUserLoading(false));
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("Error creating user: ", errorCode, errorMessage);
+    }
   };
 
   const displayErrorMessage = Boolean(emailHasErrors() || passwordHasErrors());
@@ -75,7 +83,7 @@ export const SignUpScreen = ({navigation}) => {
 
   return (
     <>
-      <AppBar navigation={navigation}/>
+      <AppBar navigation={navigation} />
       <SignupScreenContainer>
         <TextInput
           label="Email"
@@ -107,8 +115,9 @@ export const SignUpScreen = ({navigation}) => {
           </HelperText>
         </View>
         <Button
-          icon="send-outline"
           mode="contained"
+          icon="send-outline"
+          loading={userIsLoading}
           onPress={handleSignup}
           disabled={!enableSubmit}
         >

@@ -3,7 +3,6 @@ import { Searchbar } from "react-native-paper";
 import { RestaurantCard } from "../components/RestaurantCard";
 import styled from "styled-components/native";
 import { FlatList } from "react-native";
-import { useSelector } from "react-redux";
 
 const SearchBarContainer = styled.View`
   background-color: ${(props) => props.theme.colors.bg.secondary};
@@ -24,7 +23,6 @@ const restaurant = {
 const data = [restaurant, restaurant, restaurant, restaurant];
 
 export const RestaurantScreen = () => {
-  const user = useSelector((state) => state.user);
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
