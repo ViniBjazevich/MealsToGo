@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import AppBar from "../components/AppBar";
+import AppBar from "../../components/AppBar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, TextInput } from "react-native-paper";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../../firebaseConfig";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserLoadingStatus } from "../../redux/selectors";
-import { updateUserLoading } from "../../redux/accountSlice";
+import { selectUserLoadingStatus } from "../../../redux/selectors";
+import { updateUserLoading } from "../../../redux/accountSlice";
 
 const LoginScreenContainer = styled.View`
   flex: 1;

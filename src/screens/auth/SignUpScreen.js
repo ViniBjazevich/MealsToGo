@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   ActivityIndicator,
@@ -9,10 +9,10 @@ import {
 } from "react-native-paper";
 import { View } from "react-native";
 import styled from "styled-components/native";
-import AppBar from "../components/AppBar";
+import AppBar from "../../components/AppBar";
 import { useSelector, useDispatch } from "react-redux";
-import { selectUserLoadingStatus } from "../../redux/selectors";
-import { updateUserLoading } from "../../redux/accountSlice";
+import { selectUserLoadingStatus } from "../../../redux/selectors";
+import { updateUserLoading } from "../../../redux/accountSlice";
 
 const SignupScreenContainer = styled.View`
   flex: 1;
