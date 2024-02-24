@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AppBar from "../../components/AppBar";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Button, TextInput } from "react-native-paper";
+import { Button, Snackbar, TextInput } from "react-native-paper";
 import { auth } from "../../../firebaseConfig";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +16,17 @@ const LoginScreenContainer = styled.View`
   padding: 50px;
 `;
 
+const SnackContainer = styled.View`
+  /* flex: 1; */
+  /* align-items: center; */
+  justify-content: end;
+  align-items: end;
+`;
+
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
   const userIsLoading = useSelector(selectUserLoadingStatus);
   const disableLoginButton = !email.length || !password.length;
@@ -32,10 +40,10 @@ export const LoginScreen = ({ navigation }) => {
         password
       );
     } catch (error) {
-      dispatch(updateUserLoading(false));
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("user not signed in: ", errorCode, errorMessage);
+      dispatch(updateUserLoading(false));
+      setErrorMessage("Error: " + errorCode);
     }
   };
 
@@ -69,6 +77,17 @@ export const LoginScreen = ({ navigation }) => {
           Login
         </Button>
       </LoginScreenContainer>
+      <SnackContainer>
+        <Snackbar
+          visible={Boolean(errorMessage.length)}
+          onDismiss={() => setErrorMessage("")}
+          action={{
+            label: "Dismiss",
+          }}
+        >
+          {errorMessage}
+        </Snackbar>
+      </SnackContainer>
     </>
   );
 };
