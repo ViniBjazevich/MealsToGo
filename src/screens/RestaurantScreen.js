@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import { FlatList } from "react-native";
 
 const SearchBarContainer = styled.View`
-  background-color: ${(props) => props.theme.colors.bg.secondary};
+  background-color: white;
   padding: ${(props) => props.theme.space[3]};
 `;
 
